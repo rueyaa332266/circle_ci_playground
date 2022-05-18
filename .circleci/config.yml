@@ -9,6 +9,7 @@ jobs:
           command: |
             python -m unittest
 workflows:
+  version: 2
   some-test:
     jobs:
       - python-test
