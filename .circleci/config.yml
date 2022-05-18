@@ -8,3 +8,7 @@ jobs:
       - run:
           command: |
             python -m unittest
+workflows:
+  some-test:
+    jobs:
+      - python-test
