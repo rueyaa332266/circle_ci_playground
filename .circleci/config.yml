@@ -3,11 +3,12 @@ jobs:
   python-test:
     docker:
       - image: cimg/python:3.10.4
+    parallelism: 2
     steps:
       - checkout
       - run:
           command: |
-            python -m unittest
+            python -m unittest $(circleci tests glob "test_*.py" | circleci tests split)
 workflows:
   version: 2
   some-test:
