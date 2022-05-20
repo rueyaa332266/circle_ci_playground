@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run:
           command: |
+            echo $(circleci tests glob "test_*.py")
             python -m unittest $(circleci tests glob "test_*.py" | circleci tests split)
 workflows:
   version: 2
