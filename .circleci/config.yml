@@ -1,17 +1,25 @@
-version: 2
-jobs:
-  python-test:
-    docker:
-      - image: cimg/python:3.10.4
-    parallelism: 1
+version: 2.1
+
+jobs: # conditional steps may also be defined in `commands:`
+  job_with_optional_custom_checkout:
+    parameters:
+      custom_checkout:
+        type: string
+        default: ""
+    machine:
+      image: ubuntu-2004:202107-02
     steps:
       - when:
-          condition: 
-            equal: [ 'check', << `date +”%a”` >> ]
+          condition: <<parameters.custom_checkout>>
           steps:
-            - run: echo "ok"
+            - run: echo "my custom checkout"
+      - unless:
+          condition: <<parameters.custom_checkout>>
+          steps:
+            - checkout
 workflows:
-  version: 2
-  some-test:
+  build-test-deploy:
     jobs:
-      - python-test
+      - job_with_optional_custom_checkout:
+          custom_checkout: "any non-empty string is truthy"
+      - job_with_optional_custom_checkout
