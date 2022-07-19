@@ -5,15 +5,14 @@ jobs:
       - image: cimg/python:3.10.4
     parallelism: 1
     steps:
+      - when:
+          condition: equal: [ 'check', << `date +”%a”` >> ]
+          steps:
+            - run: echo "ok"
       - checkout
       - run:
           command: |
             echo `date +”%a”`
-      - when:
-          condition: 
-            equal: [ 'check', << `date +”%a”` >> ]
-          steps:
-            run: echo ok
 workflows:
   version: 2
   some-test:
