@@ -5,7 +5,7 @@ jobs: # conditional steps may also be defined in `commands:`
     parameters:
       custom_checkout:
         type: string
-        default: `date`
+        default: ""
     machine:
       image: ubuntu-2004:202107-02
     steps:
@@ -21,5 +21,5 @@ workflows:
   build-test-deploy:
     jobs:
       - job_with_optional_custom_checkout:
-          custom_checkout: "any non-empty string is truthy"
+          custom_checkout: `date`
       - job_with_optional_custom_checkout
