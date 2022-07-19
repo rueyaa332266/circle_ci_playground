@@ -5,14 +5,14 @@ jobs: # conditional steps may also be defined in `commands:`
     parameters:
       custom_checkout:
         type: string
-        default: ""
+        default: `date`
     machine:
       image: ubuntu-2004:202107-02
     steps:
       - when:
           condition: <<parameters.custom_checkout>>
           steps:
-            - run: echo "my custom checkout"
+            - run: echo <<parameters.custom_checkout>>
       - unless:
           condition: <<parameters.custom_checkout>>
           steps:
