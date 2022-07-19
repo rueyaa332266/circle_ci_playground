@@ -21,5 +21,5 @@ workflows:
   build-test-deploy:
     jobs:
       - job_with_optional_custom_checkout:
-          custom_checkout: `date`
+          custom_checkout: "check"
       - job_with_optional_custom_checkout
