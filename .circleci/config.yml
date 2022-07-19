@@ -10,10 +10,6 @@ jobs:
             equal: [ 'check', << `date +”%a”` >> ]
           steps:
             - run: echo "ok"
-      - checkout
-      - run:
-          command: |
-            echo `date +”%a”`
 workflows:
   version: 2
   some-test:
