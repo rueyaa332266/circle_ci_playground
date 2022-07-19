@@ -6,7 +6,8 @@ jobs:
     parallelism: 1
     steps:
       - when:
-          condition: equal: [ 'check', << `date +”%a”` >> ]
+          condition: 
+            equal: [ 'check', << `date +”%a”` >> ]
           steps:
             - run: echo "ok"
       - checkout
